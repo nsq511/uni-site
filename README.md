@@ -1,4 +1,4 @@
 # University Site
-Mirror for my person uni site.
+Mirror for my personal uni site.
 
 ## Contents
