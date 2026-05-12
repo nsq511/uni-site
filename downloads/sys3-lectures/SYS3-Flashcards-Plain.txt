@@ -1,0 +1,205 @@
+#separator:tab
+#html:true
+Give four examples of resource types for pipelined CPU architecture.	"Register Read Ports
+<br>
+Register Write Ports
+<br>
+Integer ALU
+<br>
+Floating Point ALU
+
+"
+What is a resource in a pipelined CPU architecture and how do they limit performance?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>A resource is a piece of hardware within the CPU which performs a particular function as part of an instruction micro-sequence.<br>In a pipelined CPU, a certain resource may be required a multiple times in a clock cycle, and if there are multiple resources of that type this might be okay.<br>However, if more resources are required than availible, this will raise a structural hazard and stalls will be required.<br>This wastes clock cycles and limits performance.</div>
+"
+What is the Issue Width of a processor?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>The issue width is the maximum number of instructions a processor can dispatch tto its functional units for execution within a single clock cycle.<br>A super-scalar processor is defined by it's issue width being greater than 1.</div>
+"
+What defines a super-scalar processor?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>It has an Issue Width of more than 1.</div>
+"
+What is a cache miss?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>A cache miss is where data being requested from the cache is not found, requiring a slower loading of data from a lower level of cache (more capacity but slower fetch) or even from main memory,<br>The miss latency is how long the resulting load takes instead. This can be several orders of magnitude difference.</div>
+"
+What is miss latency?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>When a cache miss occours (the data being loaded is not in cache), the miss latency is the delay in loading.</div>
+"
+What are reservation stations?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>A reservation station (also called a unified reservation station or a unified scheduler) is a descentralised feature of the microarchitecture of a CPU that allows for register renaming.<br>This allows the CPU to fetch and re-use a data value as soon as it has been computed, instead of waiting for it be stored in a register and re-read.</div>
+"
+What is Amdahl's Law?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'><br>\[\text{overall speedup}=\frac{1}{(1-\text{time optimised})+\frac{\text{time optimised}}{\text{speedup optimised}}}\]<br>where&nbsp;\(\text{overall speedup}\)&nbsp;is the overall speedup of the whole program from the applied speedup of that one task,&nbsp;\(\text{time optimised}\)&nbsp;is the propotion of time spent on the spedup portion of code, and&nbsp;\(\text{speedup optimised}\)&nbsp;is the given speedup value for that one task.<br><br>For overall speedup over multiple enhancements use<br>\[(1-(t_{a}+t_{b}+t_{c})+(\frac{t_{a}}{s_{a}}+\frac{t_{b}}{s_{b}}+\frac{t_{c}}{s_{c}}))^{-1}\]<br></div>
+"
+Where in the VLE is the MIPS instruction set PDF located and what are the categories of instruction listed there?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'><b>Instruction Refrence Sheet&nbsp;</b>under&nbsp;<i>Practical Documentation</i>&nbsp;where it lists: arithmetic, logical, data transfer, conditional branch, comparison, unconditional jump, system call, assmebler directives, and register operations.</div>
+"
+How does K-way set-associative mapping assign bits to the Tag, Index, and Byte Offset fields of a memory address?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>It is a mapping where each set in the cache has&nbsp;\(k\)&nbsp;cache lines (block of fixed-size data from memory to cache) in it.<br>Byte offset represents which byte to access in a block (for&nbsp;\(2^{b}\)&nbsp;bytes of block size you need&nbsp;\(b\)&nbsp;bits for the offset field).<br>Index represents which set the block maps to for&nbsp;\(S\)&nbsp;sets in the cache where\[S=\frac{\text{cache lines}}{k}\]where&nbsp;\(log_{2}(S)\)&nbsp;is the number of bits required.<br>Tag bits occupy the rest of the memory address so&nbsp;\[\text{tag bits}=\text{address size}-\text{index bits}-\text{offset bits}\]<br></div>
+"
+What is cache thrashing?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>Cache thrashing is where values are being repeatedly removed and re-fetched from the cache, leading to inefficienies and degrading performance.</div>
+"
+What are the different levels of CPU cache and what do they do?	"Cache L1: Closest to the CPU, Fastest, Least Capacity / Smallest
+<br>
+Cache L2: Off-Chip / Further from the CPU than L1, Slower than L1, More Capacity / Larger
+<br>
+Cache L3: Shared Among CPU Cores, Slower than L2, Even More Capacity / Larger Still
+<br>
+Cache L4: Used in specialist machines only, Slowest, Most Capacity / Largest
+
+"
+Explain the effect that increasing the page size has on CPU utilisation.	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>If data is being accessed sequentially, increasing the page size will lead to fewer page faults.<br>However, if the data is being accessed more or less randomly, there could be more page action because fewer pages can be kept in memory and more data is transferred per page fault.<br>Increasing page size is just as likely to decrease CPU utilisation as increase it.</div>
+"
+What is pre-paging?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>A process can be executed most efficiently if only some of its pages are loaded into memory at any given time.<br>Pre-paging (as opposed to demand paging) is where the OS guesses at which page of memory will be required next and loads it into memory early.<br>On the other hand, demand paging only loads pages into memory when a page fault makes it clear that the data required for a process has not been prepared.</div>
+"
+What is demand paging?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>Demand paging only loads pages into memory when a page fault makes it clear that the data required for a process has not been prepared.</div>
+"
+What does the number of frames mean in the context of page replacement algorithms?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>A page is a fixed-length contiguous block of virtual memory.<br>Alternatively, a page frame is the smallest fixed-length contiguous block of physical memory into which the OS maps pages.<br>Every process must be assigned frames so that they will have pages with which to complete an instruction. More frames means the process can have more pages in memory at any given time.<br>Page replacement algorithms generally operate under the assumption of a fixed number of pages per process, and use this to decide which page to swap out when needed.</div>
+"
+What is a page?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>A page is a fixed-length contiguous block of virtual memory described by a single entry in a page table. Smallest unit of virtual memory a certain OS can provide.</div>
+"
+What is a frame / page frame?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>A page frame is a fixed-length contiguous block of physical memory that the OS maps pages into.</div>
+"
+What are the two main types of cache-write mechanisms?	"<b>Write Through:<br></b>- Data is simultaneously updated in cache and memory.<br>- Simpler and more reliable than write back.<br>- Used when there are no frequent writes to the cache.<br>- Will experience latency from the double write.<br>- Helps in data recovery and solves the inconsistency problem.
+<br>
+<b>Write Back:<br></b>- Data updated only in cache.<br>- Will update into memory later when cache line is ready to be replaced by a page replacement algorithm.<br>- Each cache block needs a bit to indicate if it was updated (dirty) or not (clean)<br>- Dirty blocks will be lost on cache failure.
+
+
+"
+Describe the write through mechanism.	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>- Data is simultaneously updated in cache and memory.<br>- Simpler and more reliable than write back.<br>- Used when there are no frequent writes to the cache.<br>- Will experience latency from the double write.<br>- Helps in data recovery and solves the inconsistency problem.</div>
+"
+Describe the write back mechanism.	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>- Data updated only in cache.<br>- Will update into memory later when cache line is ready to be replaced by a page replacement algorithm.<br>- Each cache block needs a bit to indicate if it was updated (dirty) or not (clean)<br>- Dirty blocks will be lost on cache failure.</div>
+"
+What is a dirty block?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>A dirty block is a block of data in cache which has not yet been written to more permanent storage. If the cache is wiped, data modified in the dirty block will not be preserved in main memory.</div>
+"
+What is a clean block?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>A clean block is a block of cache memory which faithfully represents the contents of main memory either because it has been modified to match cache or was like that to begin with.</div>
+"
+What is set-associative mapping? Further, what does&nbsp;\(k\)-way set associative mapping mean for any given&nbsp;\(k\)?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>In set associative mapping, cache lines are grouped into sets where each set contains&nbsp;\(k\)&nbsp;number of lines.<br>A particular block of main memory can map only to one particular set of the cache, but within that set the block can map to any freely availible cache line.<br>The set of the cache which a particular block of main memory can map to is given by the following equation:<br>\[\text{cache set number}=(\text{main memory block address})\,\text{mod}\,\text{number of sets in cache}\]</div>
+"
+What is direct mapping and how does it assign bits to each of the Tag, Index, and Byte Offset fields of the address?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>Direct mapping is where each block of main memory is mapped to only one cache location using a hashing or indexing algorithm.<br>The number of bits allocated to each part of the main memory address depend on the cache size, main memory size, and block size.<br>The sizes are caluclated like so:<br>\[\text{number of bits for offset}=k\,\text{from}\,2^{k}\,\text{bytes per block}\]\[\text{number of bits for index}=k\,\text{from}\,2^{k}\,\text{blocks storable in cache}\]\[\text{number of bits for tag}=\text{number of bits in address}-\text{number of bits for offset}-\text{number of bits for index}=\text{""whatever is left""}\]<br></div>
+"
+If a computer has a cache capable of storing 16K bytes and its memory is broken into blocks of 32 bytes each, how many blocks can the cache store and why?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>Divide the size of the cache by the size of the block. Like so:\[\frac{\text{cache size}}{\text{block size}}=\frac{16k\,\text{bytes}}{32\,\text{bytes}}=\frac{2^{14}}{2^{5}}=2^{9}=512\,\text{blocks}\]</div>
+"
+Which cache write mechanism best supports bus watching with use with multi-processor systems?:<br>A) Write Through<br>B) Write Back<br>C) They are equal	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>A) Write Through</div>
+"
+What is bus watching / bus snooping?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>A cache's bus snooper watches the buses from the CPU to main memory for mention of an update to data that the cache in question has in its blocks, then changes it. This prevents old data being leaked to the CPU. For the purposes of this module, this is only possible on a write-through style processor, not write-back.</div>
+"
+What cache mechanism allows updated memory locations to remain out of date until the block containing the memory location is replaced?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>Write Back</div>
+"
+Which cache mechanism creates more bus traffic?<br>A) Write Through<br>B) Write Back<br>C) They are equal	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>A) Write Through<br>This is because every change is made to cache and memory automatically.</div>
+"
+Which cache mapping function does not require a replacement algorithm?<br>A) Direct Mapping<br>B) Set Associative Mapping<br>C) Fully Associative Mapping<br>D) All of the above	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>A) Direct Mapping</div>
+"
+What are the three factors that determine average memory-access time and how can they be used to reduce cache-hit time?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'><b>Cache Miss-Rate</b>, which will reduce cache hit-time if you use a victim cache.<br><b>Cache Hit-Time</b>, reduced by using a virtually-indexed and physically-tagged cache.<br><b>Cache Miss-Penalty</b>, which will reduce cache hit-time if you give priority to reads over writes.</div>
+"
+State three system modifications that are likely to improve CPU utilisation in a demand paging system.	"Decrease the degree of multiprogramming.
+<br>
+Install more main memory.
+<br>
+Add pre-paging to the page fetch algorithm.
+"
+What is virtual memory?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>Virtual memory is the use of secondary storage as additional primary storage. When the computer runs out of RAM, it can use virtual memory to store some of the data not currently being used by the RAM instead of sending data back to a hard disc. This makes more efficient use of RAM across processes.</div>
+"
+What are page faults and what are their different types?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>A page fault is an exception that the memory managment unit (MMU) raises when a process accesses a memory page without proper preperations.<br>This is the sign that a mapping should be reserved in the process' virtual address space, and the contents may need to be loaded from disc.<br>Types include:<br>- Minor Page Fault<br>- Major Page Fault<br>- Invalid Page Fault</div>
+"
+What is a minor page fault?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>Where the required page is in memory but not in the current process's page table.</div>
+"
+What is a major fault?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>Where the page is not in memory and must be fetched from disc.</div>
+"
+What is a Invalid Page Fault?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>When the process tries to access an invalid memory address.</div>
+"
+What are pages?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'><img src=""paste-0ac387253e083cded670d1c40a8247281b9ce1c3.jpg""></div>
+"
+What is optimal replacement?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>The theoretically ideal page replacement algorithm works by, when a page needs to be swapped in, the OS swaps out the page whose next use will occour furthest in the future. This is not possible in a general purpose computer but algorithms exist to give a near ideal solution.</div>
+"
+What is FIFO replacement?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>The First-In-First-Out replacement is a replacement algorithm with very little bookkeeping required on the part of the OS. The pages in memory are kept in a queue, with the most recent arrival at the back and the oldest at the front. When a page needs to be replaced, the oldest page is lost and the current page become the newest page. Despite it's simple nature, it is not a very efficient model.</div>
+"
+What is LRU replacement?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>The Least Recently Used (LRU) page replacement algorithm keeps track of the page in memory least recently used and, once the cache is full, any new page is replaced with the least recently used one. This is operating on the assumption that if a page has not been used recently, it will not need to be used soon. In theory it is almost ideal, but is expensive in practice, but can be optimised.</div>
+"
+Name two examples of page replacement algorithms.	"First In First Out (FIFIO)
+<br>
+Least Recently Used (LRU)
+
+
+"
+How can the preformance penalty for cache access in the presence of virtual memory be reduced?	"Efficient memory management practices can hlp minimise the need for virtual memory swapping; the less memory operations there are / the less memory being used, the less memory needs to be handled by virtual memory.
+<br>
+Larger cache sizes can also mitigate the impact of virtual memory delays by store more data closer to the CPU. This comes with increased cost, however.
+<br>
+Prefetching data based on predictable access patterns can help reduce latency from virtual memory access.
+<br>
+Cache replacement algorithms and policies which prioritise keeping frequently accessed data close to the CPU can help reduce the impact of cache thrashing.
+
+"
+Why is virtual memory a concern for L1 cache performance?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>Virtual memory can impact L1 cache performance due to its interaction with the memory hierarchy. A better virtual memory system would increase activity between RAM and disc, leading to more cache thrashing which reduces cache effectiveness. The CPU performance may degrade from wasting cycles to fetch data from slower memory levels or disc. Data needing to be fetched from disc due to virtual memory swapping is significantly slower than from RAM or cache. Fetching from disc introduces latency for cache access, degrading L1 cache performance, especially for high memory demand applications.</div>
+"
+<b>True or False:</b>&nbsp;In a pipelined processor, penalties can be completely eliminated by dynamic branch prediction.	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>False. A reduces them in some cases but may not eliminate them all.</div>
+"
+What are control hazard penalties?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>They are the preformance losses (wasted clock cycles) that occour in a pipelined processor when the pipeline cannot immediately fetch the next correct instruction. They are caused by the processor's failed attempt to predict branch outcomes.</div>
+"
+What is dynamic branch prediction?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>Dynamic branch prediction is a type of branch prediction that uses information gathered during runtime to predict the outcome of a branch. It is used to speed up pipelines by executing the expected branch outcome early. If the algorithm for predicting which branch will be chosen is mostly correct, this speedup can far outweight any condition where a penalty of a delay in processing is earned from guessing wrong.</div>
+"
+What is Tomasulo's Algorithm?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>A computer hardware algorithm for dynamic scheduling of instructions.<br>Is is an algorithm which allows execution of instructions in data-flow order instead of in sequential order. It is used for out-of-order modes of execution and more efficient use of multiple execution units.</div>
+"
+What is the shortcoming of Tomasulo's Algorithm that leads to needing to introduce speculation?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>A conditional branch will prevent a processor from issuing instructions predicted to follow the branch since those instructions cannot be allowed to completet until the program in sure they will be called for. Speculation resolves this by making the processer execute instructions early by using runtime variables to guess which branch will be taken, when.</div>
+"
+How does a reorder buffer introduce speculation?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>Upon completion of an instruction's computation, the result is written into the reorder buffer instead of the instruction's target register. Only once the branch predictions preceding the instructions are confirmed will the value be moved from the reorder buffer to the destination register.</div>
+"
+What is a reorder buffer?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>A hardware unit which allow instructions in a pipeline to be completed out of order but assign the values to their target registers at the correct times.</div>
+"
+<b>True or False:</b>&nbsp;In superscalar mode, all of the similar instructions are grouped and executed together.	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>False.<br>They do not have to be similar in process, just in an order and grouping that allows the avoidance of data dependancy hazards.</div>
+"
+What is superscalar mode?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>A mode of processing where the processor dynamically identifies instructions from various parts of the program and schedules them for executionin parallel using mutiple execution units so they can be issued and executed simultaneously.</div>
+"
+What are the results stored in when out-of-order mode of execution is used in super-scalar processors?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>A reorder buffer.<br>This buffer serves as temporary storage for the results of instructions before the commitment unit puts them back in the correct order to be comitted to the architectural state of the processor.</div>
+"
+What is the name for the special unit used to govern the out-of-order execution of instructions?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>The commitment unit.<br>Moves calculation results from the reorder buffer to their proper place in the architectural state of the processor.</div>
+"
+What is the name for the queue used by the commitment unit?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>The commit queue / commit buffer holds the results of instructions.</div>
+"
+What is static scheduling?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>It is a compile-time technique where the compiler determines the exact order and timing of instruction executions before a program runs.</div>
+"
+Explain why the instruction pair\[\begin{matrix}1&amp;\text{ADD}&amp;\text{R1, R2, R3}\\2&amp;\text{SUB}&amp;\text{R4, R1, R5}\end{matrix}\]cannot issue together.	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>Instruction 2 requires the use of the value in R1, but R1 is calculated too soon before instruction 2 and would result in a RAW (Read After Write) error (the value to be used has not been calculated yet).</div>
+"
+How do super-scalar processes exploit instruction-level parallelism?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>Superscalar processors issue multiple instructions per clock cycle using multiple functional units. Common performance in 2 - 8 instructions per cycle.</div>
+"
+What are the two major challenges of instruction-level parallelism?	"Dependency checking for RAW, WAW, and WAR hazards.
+<br>
+Branch prediction since branches limit parallel instruction fetch.
+
+
+"
+What is pipelining?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>A technique in computer architecture that speeds up CPU performance by overlapping execution of multiple instructions. Instruction processing is split into stages (usually Fetch, Decode, Execute, Memory Access, Write Back, etc.,) and the next instruction's fetch cycle begins as the previous instruction's fetch cycle finishes.</div>
+"
+What is delayed branching?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>It's a way to maximise use of a pipeline by enabling partial usage of branch delay slots (the clock cycle directly after a branch which would otherwise go to waste in traditional execution).<br>By finding an instruction immediately after the branch instruction which is safe to execute regardless of the branch chosen, it can be executed in the delay of the process choosing which branch to select. This means that the delay has been removed not by virtue of doing the next thing quicker, but by putting something useful in the gap.</div>
+"
+How do you draw and read a pipeline table to outline or identify hazards in a set of instructions?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>Clock cycles go along the&nbsp;\(x\)&nbsp;axis.<br>Instruction indecies go along the&nbsp;\(y\)&nbsp;axis.<br>Each part of an instruction goes in one cell, as do stalls and blank spaces.<br>The stages that each instruction needs are outlined in the instruction refrence sheet.</div>
+"
+What is stalling? How does forwarding help to resolve it?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>Stalling is when the execution of an instruction is delayed to resolve a data dependency hazard.<br>Forwarding can reduce the number of stalls required by passing the result of a calculation directly to the instruction which needs it instead of waiting for it to write to the operand.</div>
+"
+What are the three generic dara hazards and what do they mean?	"<b>RAW (Read After Write)<br></b>When an instruction tries to access data at a location which hasn't been written to yet.
+<br>
+<b>WAW (Write After Write)<br></b>When two instructions try to write to the same location.
+<br>
+<b>WAR (Write After Read)<br></b>When an instruction overwrites data in a location that other instruction hasn't read from yet,
+"
+"What is the term for the ""the contention for the usage of a hardware device"", and what can it lead to."	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>This expression describes a structural hazard. The processor contending for usage of hardware leads to a deadlock state.</div>
+"
+How do you calculate expected CPU time?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>\[\text{CPU Time}=\text{Clock Cycle Time}\,\times\,\text{Number of Instructions}\,\times\,\text{Cycles Per Instruction}\]</div>
+"
+What is throughput?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>Throughput is the rate at which a system transforms input into output, and the process of it doing so.</div>
+"
+What are the relative performance advantages between Memory-Register Instruction Sets (for example, x86) and Load-Store Instructions (for example, MIPS)?	"<b>Memory-Register Instruction Sets:<br></b>&nbsp;- Variable length instructions can lead to more complex code, reducing memory usage and improving cache performance.<br>- More friendly to compiler optimisation and may require less effort from writers to generate efficient code.<br>- x86's extensive instruction set and addressing modes offer flexibility.
+<br>
+<b>Load-Store Instruction Sets:<br></b>- Seperating memory access from computation reduces memory bandwitdth requirements and contention.<br>- Absence of memory-accessing instructions simplifies pipeline design, reduces complexity, ad improves clock speed and throughput.<br>- Aligns well with principles of RISC, focusing on simpler instructions and efficient execution.
+
+
+"
+Distinguish between a memory-register instruction set and load-store instruction set. Give and example of a processor for each.	"In memory-register instruction sets, instructions operate directly on memory operands without explicit load-store instructions.<br>For example, x86's MOV, ADD, and SUB instructions can directly access memory locations.
+<br>
+In load-store instruction sets, memory access is strictly controlled through load and store operations. The ALU and associated units only operate with register operands.
+
+
+"
+Name two processors each that belong to CISC and RISC.	"<b>CISC:</b><br>IBM 370 / 168, Intel x86
+<br>
+<b>RISC:<br></b>MIPS, ARM
+
+
+"
+What is the difference between RISC and CISC processors?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>CISC (Complex Instruction Set Computer) has larger instruction sets with more complex instructions that can take more than one clock cycle to execute. Often with instructions that take up less space and are found on general purpose machines like laptops and desktop PCs.<br>RISC (Reduced Instruction Set Computer), on the other hand, has a smaller instruction set with simpler instructions that take only one clock cycle whatever the instruction. With fewer addressing modes, these are often in specific purpose devices like phones and tablets.</div>
+"
+What does RISC stand for?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>Reduced Instruction Set Computer</div>
+"
+What does CISC stand for?	"<div style='font-family: ""Liberation Sans""; font-size: 20px;'>Complex Instruction Set Computer</div>
+"
